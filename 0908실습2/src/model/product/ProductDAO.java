@@ -12,6 +12,8 @@ import model.common.JDBC;
 
 public class ProductDAO {
 	
+	private static String sql_SearchProduct = "SELECT * from product WHERE ? like %?%";
+	
 	public ArrayList<ProductVO> getProductList(){
 		Connection conn = JDBC.connect();
 		ArrayList<ProductVO> datas = new ArrayList();
@@ -45,8 +47,10 @@ public class ProductDAO {
 		PreparedStatement pstmt = null;
 		
 		try {
-			String sql = "select * from product where "+condition+" like '%"+content+"%'";
-			pstmt = conn.prepareStatement(sql);
+			//String sql = "select * from product where "+condition+" like '%"+content+"%'";
+			pstmt = conn.prepareStatement(sql_SearchProduct);
+			pstmt.setString(1, condition);
+			pstmt.setString(2, content);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ProductVO vo = new ProductVO();
