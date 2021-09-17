@@ -64,7 +64,7 @@ public class UsersDAO {
 	public ArrayList<UsersVO> selectAll(){
 		ArrayList<UsersVO> datas = new ArrayList<UsersVO>();
 		conn = DBCP.connect();
-		String sql = "select * from users where rownum <= 3";
+		String sql = "select * from users"; //where rownum <= 3
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();

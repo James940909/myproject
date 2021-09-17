@@ -20,13 +20,13 @@ public class MessageDAO {
 		String sql;
 		try {
 			if((userid == null) || (userid.equals(""))) {
-				sql = "select * from message where rownum<=?";
+				sql = "select * from message where rownum<=? order by mid desc";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, cnt);
 			}
 			
 			else {
-				sql = "select * from message where userid=? and rownum <= ?";
+				sql = "select * from message where userid=? and rownum <= ? order by mid desc";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, userid);
 				pstmt.setInt(2, cnt);
@@ -42,7 +42,7 @@ public class MessageDAO {
 				m.setFavcount(rs.getInt("favcount"));
 				m.setUserid(rs.getString("userid"));
 				
-				String rsql = "select * from reply where mid=?";
+				String rsql = "select * from reply where mid=? order by rid desc";
 				pstmt = conn.prepareStatement(rsql);
 				pstmt.setInt(1, rs.getInt("mid"));
 				ResultSet rrs = pstmt.executeQuery();
@@ -131,5 +131,54 @@ public class MessageDAO {
 		}
 	}
 	
+	/*
+	public boolean transCU(MessageVO vo) {
+		conn = DBCP.connect();
+		try {
+			conn.setAutoCommit(false); // set autocommit=0;
+			String sql1="insert into message(mid, userid, msg) values((SELECT NVL(MAX(mid),0)+1 FROM message),?,?)";
+			String sql2="update message set userid=?, msg=? where mid=?";
+			pstmt=conn.prepareStatement(sql1); //
+			pstmt.setString(1, vo.getUserid());
+			pstmt.setString(2, vo.getMsg());
+			pstmt.executeUpdate();
+			pstmt=conn.prepareStatement(sql2); //
+			pstmt.setString(1, vo.getUserid());
+			pstmt.setString(2, vo.getMsg());
+			pstmt.setInt(3, vo.getMid());
+			pstmt.executeUpdate();
+			ResultSet rs=pstmt.executeQuery();
+			
+			rs.next();
+			if(rs.getInt(1)<0) { // 잔액이 0미만이면,
+				conn.rollback();
+				return false; 
+			}
+			else {
+				conn.commit(); // commit;
+			}
+			
+			conn.setAutoCommit(true); // set autocommit=0;	
+			
+		}
+		catch (Exception e) {
+			System.out.println("transCU()에서 예외발생!");
+			e.printStackTrace();
+		} 
+		
+		finally {
+			try {
+				rs.close();
+			}
+			catch (SQLException e) {
+				System.out.println("transCU()에서 예외발생!");
+				e.printStackTrace();
+			}
+			DBCP.disconnect(pstmt, conn);
+		}
+				
+		return true;
+	}
+	*/
 	
 }

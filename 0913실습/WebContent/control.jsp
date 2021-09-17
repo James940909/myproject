@@ -40,7 +40,6 @@
 	
 	
 	else if(action.equals("newmsg")){
-		System.out.println(mVO);
 		if(mDAO.insert(mVO)){
 			response.sendRedirect(url);
 		}
@@ -51,7 +50,7 @@
 	
 	else if(action.equals("newrp")){
 		System.out.println(rVO);
-		if(rDAO.insert(rVO)){
+		if(rDAO.transCU(rVO)){
 			response.sendRedirect(url);
 		}
 		else{
@@ -88,9 +87,12 @@
 	else if(action.equals("logout")){
 		session.invalidate();
 		///session.removeAttribute("selUser");
-		response.sendRedirect("control.jsp?action=main");
+		response.sendRedirect(url);
 	}
-	
+	else if(action.equals("update")){
+		mDAO.update(mVO);
+		response.sendRedirect(url);
+	}
 
 	
 	// 회원가입 기능
