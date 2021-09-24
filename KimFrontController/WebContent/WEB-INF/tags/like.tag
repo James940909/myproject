@@ -8,6 +8,6 @@
 		<a>X</a>
 	</c:when>
 	<c:otherwise>
-		<a href="update.do?mid=${mid}&mcnt=${mcnt}">♥</a>
+		<a href="update.do?mid=${mid}&mcnt=${mcnt}&selUser=${selUser}">♥</a>
 	</c:otherwise>
 </c:choose>

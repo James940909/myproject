@@ -32,6 +32,7 @@ public class LoginAction implements Action{
 			forward.setPath("main.do");
 		}
 		else {
+			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out=response.getWriter();
 			out.println("<script>alert('로그인 실패!');history.go(-1);</script>");
 		}

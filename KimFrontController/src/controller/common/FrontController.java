@@ -93,15 +93,18 @@ public class FrontController extends HttpServlet {
 		}
 				
 		// 3) 사용자에게 결과 화면 출력
-		if(forward.isRedirect()) {
-			response.setContentType("text/html; charset=UTF-8");
-			response.sendRedirect(forward.getPath());
-		}
 		
-		else {
-			response.setContentType("text/html; charset=UTF-8");
-			RequestDispatcher dispatcher=request.getRequestDispatcher(forward.getPath());
-			dispatcher.forward(request, response);
+		if(forward!=null) {
+			if(forward.isRedirect()) {
+				response.setContentType("text/html; charset=UTF-8");
+				response.sendRedirect(forward.getPath());
+			}
+			else {
+				response.setContentType("text/html; charset=UTF-8");
+				RequestDispatcher dispatcher=request.getRequestDispatcher(forward.getPath());
+				dispatcher.forward(request, response);
+			}
+			
 		}
 		
 		
