@@ -1,5 +1,15 @@
 <%@ tag language="java" pageEncoding="UTF-8" body-content="empty"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<script type="text/javascript">
+	function button_warning(){
+		if(confirm("로그인 후 이용바랍니다!") == true){
+			location.href= "myLogin.jsp";
+		}
+		else{
+			return;
+		}
+	}
+</script>
 
 <div id="sidebar">
 	<div class="inner">
@@ -18,13 +28,12 @@
 			</header>
 			<ul>
 				<li><a href="index.jsp">Home</a></li>
-				<li><a href="insertMeal.do">일일 식단등록</a></li>
-				<li><a href="myMealInfo.jsp">나의 식단 이행현황</a></li>
+				<li><a href="#" onclick="button_warning()">일일 식단등록</a></li>
+				<li><a href="#" onclick="button_warning()">나의 식단 이행현황</a></li>
 				<li><span class="opener">커뮤니티</span>
 					<ul>
-						<li><a href="ranking.jsp">오늘의 랭킹</a></li>
-						<li><a href="selectAllMeal.do">칼로리 정보</a></li>
-						<li><a href="#">게시판</a></li>
+						<li><a href="#" onclick="button_warning()">오늘의 랭킹</a></li>
+						<li><a href="#" onclick="button_warning()">칼로리 정보</a></li>
 					</ul></li>
 				<li><span class="opener">User</span>
 					<ul>

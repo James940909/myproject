@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,19 +31,59 @@ public class MealController {
 	}
 	
 	@RequestMapping("/selectAllMeal.do")
-	public String selectAllMeal(HttpSession session, MealVO vo, Model model) {
-		System.out.println("main.do 진입!");
-		model.addAttribute("mdatas", mealService.getMealList(vo));
-		System.out.println(model);
+	public String selectAllMeal(HttpSession session, MealVO vo, Model model,
+			@RequestParam(name="num",required=false,defaultValue="1")Integer num) {
+		List<MealVO> mdatas = mealService.getMealList(vo); 
+		
+		// 페이지수 1,2,3... 배열에 저장
+		List<Integer> page = new ArrayList<Integer>();
+		
+		// default값은 page!
+		List<String> activeValue = new ArrayList<String>();
+		
+		
+		// 전체 meal리스트를 10개로 잘라서 새로운 리스트 생성.
+		//List<MealVO> newMdatas = mdatas.subList(0+((num-1)*10), 10+((num-1)*10));
+		
+		int pageSize = mdatas.size();
+		int pageValue = 0; //페이지 개수
+		if(pageSize%10==0) { // 10으로 딱 떨어질때.
+			pageValue = pageSize/10;
+			List<MealVO> newMdatas = mdatas.subList(0+((num-1)*10), 10+((num-1)*10));
+			model.addAttribute("mdatas", newMdatas);
+		}
+		else { // 10으로 나눴을때 나머지가 존재할때 페이지 +1 
+			pageValue = (pageSize/10)+1;
+			if(pageValue==num) { //마지막 페이지 클릭시, 나머지값 인덱스 까지만 출력
+				List<MealVO> newMdatas = mdatas.subList(0+((num-1)*10), 0+((num-1)*10)+(pageSize%10));
+				model.addAttribute("mdatas", newMdatas);
+			}
+			else {
+				List<MealVO> newMdatas = mdatas.subList(0+((num-1)*10), 10+((num-1)*10));
+				model.addAttribute("mdatas", newMdatas);
+			}
+			
+		}
+		for(int i=0;i<pageValue;i++) {
+			page.add(i+1);
+			activeValue.add("page");
+		}
+		activeValue.remove(num-1);
+		activeValue.add(num-1, "page active");
+		
+		
+		model.addAttribute("num", num);
+		model.addAttribute("page", page);
+		model.addAttribute("activeValue", activeValue);
+		
 		return "kcalInfo.jsp";
 	}
 	
 	@RequestMapping("/insertMeal.do")
 	public String insertMeal(MealVO vo, Model model,DayMealVO dvo) {
-		model.addAttribute("mdatas", mealService.getMealList(vo));
-		model.addAttribute("ddatas", dayMealService.getDayMealList(dvo));
-		model.addAttribute("m_num", vo.getM_num());
-		return "insertMeal.jsp";
+		vo.setM_num(vo.getM_num());
+		mealService.insertMeal(vo);
+		return "selectAllMeal.do";
 	}
 	
 	@RequestMapping("/deleteMeal.do")
@@ -55,35 +98,10 @@ public class MealController {
 		return "redirect:index.jsp";
 	}
 	
-	@RequestMapping("/insertSessionMeal.do")
-	public String insertSessionMeal(HttpSession session, MealVO vo, 
-			@RequestParam(name="um_weight", required=false)Double um_weight,
-			@RequestParam(name="category", required=false)String category) 
-	
-	{
-		System.out.println("insertSessionMeal.do 진입!!");
-		
-		
-		
-		MealVO data = mealService.getMeal(vo);
-		
-		data.setM_num(vo.getM_num());
-		data.setM_name(vo.getM_name());
-		data.setM_weight(vo.getM_weight());
-		data.setM_unit(vo.getM_unit());
-		data.setM_kcal(vo.getM_kcal());
-		
-		
-		System.out.println(session);
-		System.out.println(data);
-		
-		session.setAttribute("category", category);
-		session.setAttribute("MealInfo", data);
-		session.setAttribute("kcalAll", (data.getM_kcal()/data.getM_weight())*um_weight);
-		
-		System.out.println(session);
-		System.out.println(data);
-		return "insertMeal.jsp";
+	@RequestMapping("/searchMealName.do")
+	public String searchMealName(MealVO vo, Model model) {
+		model.addAttribute("mdatas", mealService.searchMealName(vo));
+		return "kcalInfo.jsp";
 	}
 
 }

@@ -7,6 +7,7 @@ public class MealVO {
 	private Double m_weight;
 	private String m_unit;
 	private Double m_kcal;
+	private String searchName;
 	
 	public int getM_num() {
 		return m_num;
@@ -39,14 +40,17 @@ public class MealVO {
 	public void setM_kcal(Double m_kcal) {
 		this.m_kcal = m_kcal;
 	}
+	public String getSearchName() {
+		return searchName;
+	}
+	public void setSearchName(String searchName) {
+		this.searchName = searchName;
+	}
 	@Override
 	public String toString() {
 		return "MealVO [m_num=" + m_num + ", m_name=" + m_name + ", m_weight=" + m_weight + ", m_unit=" + m_unit
-				+ ", m_kcal=" + m_kcal + "]";
+				+ ", m_kcal=" + m_kcal + ", searchName=" + searchName + "]";
 	}
-	
-	
-	
 	
 	
 	

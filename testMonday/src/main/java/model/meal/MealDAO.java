@@ -40,6 +40,7 @@ public class MealDAO {
 	private static String sql_UPDATE = "UPDATE meal SET m_name=?, m_weight=?, m_unit=?, m_kcal=? WHERE m_num=?";
 	
 	private static String sql_SEARCHKCAL = "SELECT * FROM meal WHERE m_name=?";
+	private static String sql_SEARCHNAME = "SELECT * FROM meal WHERE m_name like '%'||?||'%' ORDER BY m_num ASC";
 	
 	public void insertMeal(MealVO vo) {
 		System.out.println("jdbcTemplate-insertMeal");
@@ -67,6 +68,11 @@ public class MealDAO {
 		System.out.println("jdbcTemplate-searchKcal");
 		Object[] args = { vo.getM_name() };
 		return jdbcTemplate.queryForObject(sql_SEARCHKCAL, args, new MealRowMapper());
+	}
+	public List<MealVO> searchMealName(MealVO vo){
+		System.out.println("jdbcTemplate-searchMealName");
+		Object[] args = { vo.getSearchName() };
+		return jdbcTemplate.query(sql_SEARCHNAME, args, new MealRowMapper());
 	}
 
 }

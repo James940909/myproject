@@ -5,7 +5,7 @@ public class DayMealVO {
 	private String d_date;
 	private String d_name;
 	private String d_category;
-	private Double d_daykcal;
+	private Double d_weight;
 	private Double d_userskcal;
 	private int d_users;
 	public int getD_num() {
@@ -26,11 +26,11 @@ public class DayMealVO {
 	public void setD_category(String d_category) {
 		this.d_category = d_category;
 	}
-	public Double getD_daykcal() {
-		return d_daykcal;
+	public Double getD_weight() {
+		return d_weight;
 	}
-	public void setD_daykcal(Double d_daykcal) {
-		this.d_daykcal = d_daykcal;
+	public void setD_weight(Double d_weight) {
+		this.d_weight = d_weight;
 	}
 	public Double getD_userskcal() {
 		return d_userskcal;
@@ -53,8 +53,10 @@ public class DayMealVO {
 	@Override
 	public String toString() {
 		return "DayMealVO [d_num=" + d_num + ", d_date=" + d_date + ", d_name=" + d_name + ", d_category=" + d_category
-				+ ", d_daykcal=" + d_daykcal + ", d_userskcal=" + d_userskcal + ", d_users=" + d_users + "]";
+				+ ", d_weight=" + d_weight + ", d_userskcal=" + d_userskcal + ", d_users=" + d_users + "]";
 	}
+	
+	
 	
 	
 	

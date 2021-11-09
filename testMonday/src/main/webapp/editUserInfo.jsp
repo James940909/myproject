@@ -53,64 +53,86 @@
 														<div>
 															<h2>회원정보변경</h2>
 														</div>
-														
-														
+														<div>
+															<a class="image"><img alt="프로필사진" src="images/${userInfoData.u_profile}" style="width:500px; height:400px;"></a>
+														</div>
+														<br>
 														<div class="row uniform">
-															<ul>아이디</ul>
-															<div class="6u 12u$(xsmall)">
-																<input type="text" name="demo-name" id="demo-name" value="${ userInfoData.id }" placeholder="아이디" />
-															</div>
-															<div class="6u$ 12u$(xsmall)">
-																<div class="select-wrapper">
-																	<select name="demo-category" id="demo-category">
-																		<option value="">- 이메일선택 -</option>
-																		<option value="1">@naver.com</option>
-																		<option value="1">@nate.com</option>
-																		<option value="1">@daum.com</option>
-																		<option value="1">@google.com</option>
-																	</select>
-																</div>
-															</div>
+															<table>
 															
 															
-															<ul>비밀번호</ul>
-														
+															<tr>
+																<td>
+																	<div class="6u 12u$(xsmall)">
+																		아이디
+																		<input type="text" name="demo-name" id="demo-name" value="${ userInfoData.id }" placeholder="아이디" />
+																	</div>
+																</td>
+															</tr>
 															
-															<div class="6u 12u$(xsmall)">
-																<input type="password" name="demo-name" id="demo-name" value="${ userInfoData.pw }" placeholder="비밀번호" />
-															</div>
+															<tr>
+																<td>
+																	<div class="6u 12u$(xsmall)">
+																		비밀번호
+																		<input type="password" name="demo-name" id="demo-name" value="${ userInfoData.pw }" placeholder="비밀번호" />
+																	</div>
+																</td>
+															</tr>
 															
-															<div class="6u 12u$(xsmall)">
-																<input type="password" name="demo-name" id="demo-name" value="${ userInfoData.pw }" placeholder="비밀번호 확인" />
-															</div>
+															<tr>
+																<td>
+																	<div class="6u 12u$(xsmall)">
+																		비밀번호 확인
+																		<input type="password" name="demo-name" id="demo-name" value="${ userInfoData.pw }" placeholder="비밀번호 확인" />
+																	</div>
+																</td>
+															</tr>
 															
-															<ul>성별</ul>
-															<div class="6u 12u$(xsmall)">
-																<div class="select-wrapper">
-																	<select name="demo-category" id="demo-category">
-																		<option>${ userInfoData.u_gender }</option>
-																		<option value="">남성</option>
-																		<option value="">여성</option>
-																	</select>
-																</div>
-															</div>
-															<ul>몸상태</ul>
-															<div class="6u 12u$(xsmall)">
-																<input type="text" name="demo-name" id="demo-name" value="${ userInfoData.u_height }" placeholder="키" />
-															</div>
-															<div class="6u 12u$(xsmall)">
-																<input type="text" name="demo-name" id="demo-name" value="${ userInfoData.u_weight }" placeholder="몸무게" />
-															</div>
-															<div class="6u 12u$(xsmall)">
-																<input type="text" name="demo-name" id="demo-name" value="${ userInfoData.id }" placeholder="하루 권장 칼로리" readonly/>
-															</div>
+															<tr>
+																<td>
+																	이름
+																	<input type="text" name="demo-name" id="demo-name" value="${ userInfoData.u_name }" placeholder="이름" />
+																</td>
+															</tr>
+															
+															<tr>
+																<td>
+																	성별
+																	<div class="6u 12u$(xsmall)">
+																		<div class="select-wrapper">
+																			<select name="demo-category" id="demo-category">
+																				<option>${ userInfoData.u_gender }</option>
+																				<option value="">남성</option>
+																				<option value="">여성</option>
+																			</select>
+																		</div>
+																	</div>
+																</td>
+															</tr>
+															
+															<tr>
+																<td>
+																	<div class="6u 12u$(xsmall)">
+																		신체 정보
+																		<div class="6u 12u$(xsmall)">
+																			<input type="text" name="demo-name" id="demo-name" value="${ userInfoData.u_height }" placeholder="키" readonly/>
+																			<input type="text" name="demo-name" id="demo-name" value="${ userInfoData.u_weight }" placeholder="몸무게" />
+																		</div>
+																	</div>
+																</td>
+															</tr>
 															<!-- Break -->
-															<div class="12u$">
-																<ul class="actions">
-																	<li><input type="submit" value="변경하기" class="special" /></li>
-																	<li><input type="reset" value="다시 작성" /></li>
-																</ul>
-															</div>
+															<tr>
+																<td>
+																	<div class="12u$">
+																		<ul class="actions">
+																			<li><input type="submit" value="변경하기" class="special" /></li>
+																			<li><input type="reset" value="다시 작성" /></li>
+																		</ul>
+																	</div>
+																</td>
+															</tr>
+														</table>
 														</div>
 													</form>
 											
@@ -118,7 +140,6 @@
 										</div>
 
 								</section>
-								
 								
 
 						</div>

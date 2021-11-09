@@ -42,63 +42,17 @@
 							<!-- Section -->
 								<section>
 									<header class="major">
-										<h2>오늘의 랭킹</h2>
+										<h2>오늘의 랭킹 TOP6!</h2>
 									</header>
 									<div class="posts">
-										<article>
-											<a href="#" class="image"><img src="images/defaultImage.png" alt="" /></a>
-											<h3>1위</h3>
-											<h4>님!</h4>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
-											</ul>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/defaultImage.png" alt="" /></a>
-											<h3>2위</h3>
-											<h4>님!</h4>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
-											</ul>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/defaultImage.png" alt="" /></a>
-											<h3>3위</h3>
-											<h4>님!</h4>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
-											</ul>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/defaultImage.png" alt="" /></a>
-											<h3>4위</h3>
-											<h4>님!</h4>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
-											</ul>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/defaultImage.png" alt="" /></a>
-											<h3>5위</h3>
-											<h4>님!</h4>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
-											</ul>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/defaultImage.png" alt="" /></a>
-											<h3>6위</h3>
-											<h4>님!</h4>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
-											</ul>
-										</article>
+										<c:forEach var="r" items="${ranking}" varStatus="status" begin="0" end="5">
+											<article>
+												<a href="#" class="image"><img src="images/${r.u_profile}" alt="프로필사진" style="width:400px; height:300px;"/></a>
+												<h3>${status.index+1}위</h3>
+												<h4>${r.u_name}님!</h4>
+												<p>성공횟수 : ${r.successCnt}</p>
+											</article>
+										</c:forEach>
 									</div>
 								</section>
 

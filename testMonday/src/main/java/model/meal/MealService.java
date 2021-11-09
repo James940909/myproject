@@ -9,4 +9,5 @@ public interface MealService {
 	List<MealVO> getMealList(MealVO vo);
 	MealVO getMeal(MealVO vo);
 	MealVO searchKcal(MealVO vo);
+	List<MealVO> searchMealName(MealVO vo);
 }

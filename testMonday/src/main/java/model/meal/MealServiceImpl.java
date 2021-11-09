@@ -44,7 +44,22 @@ public class MealServiceImpl implements MealService{
 
 	@Override
 	public MealVO searchKcal(MealVO vo) {
-		return mealDAO.searchKcal(vo);
+		try {
+			return mealDAO.searchKcal(vo);
+		}
+		catch(Exception e){
+			return null;
+		}
+	}
+
+	@Override
+	public List<MealVO> searchMealName(MealVO vo) {
+		try {
+			return mealDAO.searchMealName(vo);
+		}
+		catch(Exception e){
+			return null;
+		}
 	}
 
 }

@@ -22,6 +22,7 @@ class UsersRowMapper implements RowMapper<UsersVO>{
 		data.setU_gender(rs.getString("u_gender"));
 		data.setU_height(rs.getDouble("u_height"));
 		data.setU_weight(rs.getDouble("u_weight"));
+		data.setU_daykcal(rs.getDouble("u_daykcal"));
 		data.setSuccessCnt(rs.getInt("successCnt"));
 		data.setU_profile(rs.getString("u_profile"));
 		
@@ -43,15 +44,21 @@ public class UsersDAO {
 	private static String sql_SELECT_ALL = "SELECT * FROM users ORDER BY u_num DESC";
 	private static String sql_SELECT_ONE = "SELECT * FROM users WHERE id=? AND pw=?";
 	private static String sql_INSERT = "INSERT INTO users"
-			+ "(u_num, id, pw, u_name, u_gender, u_height, u_weight, successCnt, u_profile)"
-			+ "VALUES ((SELECT nvl(max(u_num),0)+1 from users),?,?,?,?,?,?,?,?)";
+			+ "(u_num, id, pw, u_name, u_gender, u_height, u_weight, u_daykcal, successCnt, u_profile)"
+			+ "VALUES ((SELECT nvl(max(u_num),0)+1 from users),?,?,?,?,?,?,?,?,?)";
 	private static String sql_DELETE = "DELETE users WHERE u_num=?";
 	private static String sql_UPDATE = "UPDATE users SET pw=?, u_name=?, u_weight=?, successCnt=? WHERE u_num=?";
+	
+	// 관리 성공시 성공카운트+1
+	private static String sql_cntUp = "UPDATE users SET successCnt=successCnt+1 WHERE u_num=?";
+	
+	// ranking페이지 6명까지 보기
+	private static String sql_RANKING = "SELECT * FROM users ORDER BY successCnt DESC";
 	
 	public void insertUsers(UsersVO vo) {
 		System.out.println("jdbcTemplate-insertUsers");
 		jdbcTemplate.update(sql_INSERT, vo.getId(), vo.getPw(), vo.getU_name(), vo.getU_gender(), vo.getU_height(),
-										vo.getU_weight(), vo.getSuccessCnt(), vo.getU_profile());
+										vo.getU_weight(), vo.getU_daykcal(), vo.getSuccessCnt(), vo.getU_profile());
 	}
 	
 	public void deleteUsers(UsersVO vo) {
@@ -72,6 +79,17 @@ public class UsersDAO {
 		System.out.println("jdbcTemplate-selectOneUsers");
 		Object[] args= { vo.getId(), vo.getPw() };
 		return jdbcTemplate.queryForObject(sql_SELECT_ONE, args, new UsersRowMapper());
+	}
+	
+	public void cntUp(UsersVO vo) {
+		System.out.println("jdbcTemplate-cntUp");
+		Object[] args= { vo.getU_num() };
+		jdbcTemplate.update(sql_cntUp, args);
+	}
+	
+	public List<UsersVO> ranking(UsersVO vo){
+		System.out.println("jdbcTemplate-ranking");
+		return jdbcTemplate.query(sql_RANKING, new UsersRowMapper());
 	}
 
 }

@@ -60,41 +60,15 @@
 																</tr>
 															</thead>
 															<tbody>
-																<tr>
-																	<td>1</td>
-																	<td>1</td>
-																	<td>1</td>
-																	<td>1</td>
-																	<td>1</td>
-																</tr>
-																<tr>
-																	<td>1</td>
-																	<td>1</td>
-																	<td>1</td>
-																	<td>1</td>
-																	<td>1</td>
-																</tr>
-																<tr>
-																	<td>1</td>
-																	<td>1</td>
-																	<td>1</td>
-																	<td>1</td>
-																	<td>1</td>
-																</tr>
-																<tr>
-																	<td>1</td>
-																	<td>1</td>
-																	<td>1</td>
-																	<td>1</td>
-																	<td>1</td>
-																</tr>
-																<tr>
-																	<td>1</td>
-																	<td>1</td>
-																	<td>1</td>
-																	<td>1</td>
-																	<td>1</td>
-																</tr>
+																<c:forEach var="t" items="${tdatas}">
+																	<tr>
+																		<td>${t.t_date}</td>
+																		<td>${t.t_users}</td>
+																		<td>${t.t_daykcal}</td>
+																		<td>${t.t_userskcal}</td>
+																		<td>${t.t_ox}</td>
+																	</tr>
+																</c:forEach>
 															</tbody>
 															
 														</table>

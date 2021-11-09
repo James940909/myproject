@@ -1,5 +1,7 @@
 package model.users;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class UsersVO {
 	private int u_num;
 	private String id;
@@ -8,6 +10,22 @@ public class UsersVO {
 	private String u_gender;
 	private Double u_height;
 	private Double u_weight;
+	private Double u_daykcal;
+	private MultipartFile fileUpload;
+	
+	
+	public MultipartFile getFileUpload() {
+		return fileUpload;
+	}
+	public void setFileUpload(MultipartFile fileUpload) {
+		this.fileUpload = fileUpload;
+	}
+	public Double getU_daykcal() {
+		return u_daykcal;
+	}
+	public void setU_daykcal(Double u_daykcal) {
+		this.u_daykcal = u_daykcal;
+	}
 	private int successCnt;
 	private String u_profile;
 	public int getU_num() {
@@ -68,9 +86,11 @@ public class UsersVO {
 	@Override
 	public String toString() {
 		return "UsersVO [u_num=" + u_num + ", id=" + id + ", pw=" + pw + ", u_name=" + u_name + ", u_gender=" + u_gender
-				+ ", u_height=" + u_height + ", u_weight=" + u_weight + ", successCnt=" + successCnt + ", u_profile="
-				+ u_profile + "]";
+				+ ", u_height=" + u_height + ", u_weight=" + u_weight + ", u_daykcal=" + u_daykcal + ", fileUpload="
+				+ fileUpload + ", successCnt=" + successCnt + ", u_profile=" + u_profile + "]";
 	}
+	
+	
 	
 	
 	

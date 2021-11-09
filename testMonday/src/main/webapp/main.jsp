@@ -32,6 +32,10 @@
 
 				<!-- Header -->
 				<header id="header">
+					<c:if test="${userInfoData!=null}">
+						<h3>${userInfoData.u_name}님, 환영합니다!</h3>
+					</c:if>
+					
 					<ul class="icons">
 						<li><a href="#" class="icon fa-twitter"><span
 								class="label">Twitter</span></a></li>
@@ -56,9 +60,11 @@
 							<p>건강 관리에서 가장 중요한 것은 식단 관리입니다.</p>
 						</header>
 						<p>저희와 함께 체계적이고 철저한 식단 관리를 성공하고, 새로운 삶을 누리세요!</p>
-						<ul class="actions">
-							<li><a href="insertMeal.jsp" class="button big">식단 등록</a></li>
-						</ul>
+						<c:if test="${userInfoData!=null}">
+							<ul class="actions">
+								<li><a href="insertMeal.jsp" class="button big">식단 등록</a></li>
+							</ul>
+						</c:if>
 					</div>
 					<span class="image object"> <img src="images/titleimg.jpg"
 						alt="메인화면 이미지" />
@@ -69,69 +75,18 @@
 				<!-- Section -->
 				<section>
 					<header class="major">
-						<h2>오늘의 건강 뉴스</h2>
+						<h2>오늘의 건강 뉴스</h2><h3>from Naver</h3>
 					</header>
 					<div class="posts">
-						<article>
-							<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
-							<h3>Interdum aenean</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-								nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-						<article>
-							<a href="#" class="image"><img src="images/pic02.jpg" alt="" /></a>
-							<h3>Nulla amet dolore</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-								nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-						<article>
-							<a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>
-							<h3>Tempus ullamcorper</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-								nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-						<article>
-							<a href="#" class="image"><img src="images/pic04.jpg" alt="" /></a>
-							<h3>Sed etiam facilis</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-								nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-						<article>
-							<a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>
-							<h3>Feugiat lorem aenean</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-								nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-						<article>
-							<a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>
-							<h3>Amet varius aliquam</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-								nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
+						<c:forEach var="t" items="${title}" varStatus="status" begin="0" end="5">
+							<article>
+								<a href="${imgUrl[status.index]}" class="image"><img src="${newsImg[status.index]}" alt="썸네일" /></a>
+								<h3>${title[status.index]}</h3>
+								<p>${content[status.index]}</p>
+								
+							</article>
+						</c:forEach>
+						
 					</div>
 				</section>
 

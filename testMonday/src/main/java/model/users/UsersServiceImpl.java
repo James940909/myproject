@@ -41,4 +41,14 @@ public class UsersServiceImpl implements UsersService{
 		}
 	}
 
+	@Override
+	public void cntUp(UsersVO vo) {
+		usersDAO.cntUp(vo);
+	}
+
+	@Override
+	public List<UsersVO> ranking(UsersVO vo) {
+		return usersDAO.ranking(vo);
+	}
+
 }

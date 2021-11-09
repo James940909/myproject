@@ -13,9 +13,9 @@
 <html>
 <head>
 <script type="text/javascript">
-	function button_delete(){
+	function button_delete(url){
 		if(confirm("삭제 하시겠습니까?") == true){
-			location.href= "deleteDayMeal.do";
+			location.href= url;
 		}
 		else{
 			return;
@@ -73,11 +73,10 @@
 									<div class="6u 12u$(xsmall)">
 										<div class="select-wrapper">
 											<select name="d_category" id="d_category">
-												<option>- Category -</option>
 												<option value="아침">아침</option>
 												<option value="점심">점심</option>
 												<option value="저녁">저녁</option>
-												<option value="식사 외">식사 외</option>
+												<option value="식사 외" selected>식사 외</option>
 											</select>
 										</div>
 									</div>
@@ -96,7 +95,7 @@
 									</div>
 									
 									<div class="6u 12u$(xsmall)">
-										<input type="text" name="um_weight" id="demo-name" value=""
+										<input type="text" name="d_weight" id="demo-name" value=""
 											placeholder="용량" />
 									</div>
 									
@@ -123,8 +122,7 @@
 					
 						<div class="6u$ 12u$(medium)">
 							<!-- Table -->
-							<form method="post" action="insertMeal.do?m_num=${m_num}">
-							<input type="hidden" name="d_num" value="${d_num}"/>
+							<form method="post" action="totalDayMeal.do?totalKcal=${totalKcal}">
 							<h3>Total</h3>
 							<div class="table-wrapper">
 								<table class="alt">
@@ -132,23 +130,64 @@
 										<tr>
 											<th>Category</th>
 											<th>메뉴</th>
+											<th>용량</th>
 											<th>Kcal</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="dml" items="${dayMealInfo}">
+										<c:forEach var="m" items="${morning}">
 											<tr>
-												<td>${dml.d_category}</td>
-												<td>${dml.d_name}</td>
-												<td>${dml.d_userskcal}</td>
-												<td><a href="#" class="button" onclick="button_delete()">삭제</a></td>
+												<td>${m.d_category}</td>
+												<td>${m.d_name}</td>
+												<td>${m.d_weight}&nbsp;&nbsp;(g/ml)</td>
+												<td>${m.d_userskcal}</td>
+												<td>
+													<input type="button" value="삭제" class="button small" onclick="button_delete('deleteDayMeal.do?d_num=${m.d_num}')"/>
+													<input type="button" value="수정" class="button small"/>
+												</td>
+											<tr>
+										</c:forEach>
+										<c:forEach var="l" items="${lunch}">
+											<tr>
+												<td>${l.d_category}</td>
+												<td>${l.d_name}</td>
+												<td>${l.d_weight}&nbsp;&nbsp;(g/ml)</td>
+												<td>${l.d_userskcal}</td>
+												<td>
+													<input type="button" value="삭제" class="button small" onclick="button_delete('deleteDayMeal.do?d_num=${l.d_num}')"/>
+													<input type="button" value="수정" class="button small"/>
+												</td>
+											<tr>
+										</c:forEach>
+										<c:forEach var="d" items="${dinner}">
+											<tr>
+												<td>${d.d_category}</td>
+												<td>${d.d_name}</td>
+												<td>${d.d_weight}&nbsp;&nbsp;(g/ml)</td>
+												<td>${d.d_userskcal}</td>
+												<td>
+													<input type="button" value="삭제" class="button small" onclick="button_delete('deleteDayMeal.do?d_num=${d.d_num}')"/>
+													<input type="button" value="수정" class="button small"/>
+												</td>
+											<tr>
+										</c:forEach>
+										<c:forEach var="o" items="${other}">
+											<tr>
+												<td>${o.d_category}</td>
+												<td>${o.d_name}</td>
+												<td>${o.d_weight}&nbsp;&nbsp;(g/ml)</td>
+												<td>${o.d_userskcal}</td>
+												<td>
+													<input type="button" value="삭제" class="button small" onclick="button_delete('deleteDayMeal.do?d_num=${o.d_num}')"/>
+													<input type="button" value="수정" class="button small"/>
+												</td>
 											<tr>
 										</c:forEach>
 									</tbody>
 									<tfoot>
 										<tr>
-											<td colspan="3"></td>
-											<td>총칼로리 : </td>
+											<td colspan="4"></td>
+											<td>총칼로리 : ${totalKcal}</td>
 										</tr>
 									</tfoot>
 								</table>

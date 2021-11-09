@@ -40,19 +40,17 @@
 			</header>
 			<ul>
 				<li><a href="index.jsp">Home</a></li>
-				<li><a href="insertMeal.do">일일 식단등록</a></li>
-				<li><a href="myMealInfo.jsp">나의 식단 이행현황</a></li>
+				<li><a href="selectAllDayMeal.do">일일 식단등록</a></li>
+				<li><a href="mainTotalMeal.do">나의 식단 이행현황</a></li>
 				<li><span class="opener">커뮤니티</span>
 					<ul>
-						<li><a href="ranking.jsp">오늘의 랭킹</a></li>
+						<li><a href="ranking.do">오늘의 랭킹</a></li>
 						<li><a href="selectAllMeal.do">칼로리 정보</a></li>
-						<li><a href="#">게시판</a></li>
 					</ul></li>
 				<li><span class="opener">User</span>
 					<ul>
 						<li><a href="#" onclick="button_logout()">로그아웃</a></li>
 						<li><a href="editUserInfo.jsp">회원정보 변경</a></li>
-						<li><a href="myPage.jsp">Mypage</a></li>
 						<li><a href="#" onclick="button_dropOut('deleteUsers.do?u_num=${userInfoData.u_num}')">회원탈퇴</a></li>
 					</ul></li>
 			</ul>
